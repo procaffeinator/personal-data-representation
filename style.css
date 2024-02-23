@@ -1,9 +1,52 @@
+.text-gradient {
+    font-weight: 800;
+    color: darkblue;
+}
+
+@supports (--css: variables) {
+    .text-gradient {
+        background: linear-gradient(to right, darkblue, darkorchid);
+        /* create bg gradient */
+        color: transparent;
+        /* hide text fill */
+        background-clip: text;
+        /* use text as clipping mask for bg */
+    }
+
+    .text-gradient::selection {
+        color: white;
+        background: darkorchid;
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
 .parent {
-    background-color: hsl(96, 10%, 11%);
+    background-color: hsl(0, 0%, 100%);
 
     /* set height + overflow */
     --scroll-gap: 2em;
-    height: 100vh;
+    height: 88vh;
     overflow: auto;
     padding: var(--scroll-gap);
 
@@ -37,7 +80,7 @@
 }
 
 .child:nth-child(1) {
-    background-color: hsl(285, 19%, 44%);
+    background-color: hsl(270, 3%, 87%);
 }
 
 .child:nth-child(1) h1 {
@@ -45,15 +88,15 @@
 }
 
 .child:nth-child(2) {
-    background-color: hsl(284, 15%, 47%);
+    background-color: hsl(270, 3%, 87%);
 }
 
 .child:nth-child(2) h1 {
-    color: hsl(283, 11%, 50%);
+    color: hsl(165, 100%, 96%);
 }
 
 .child:nth-child(3) {
-    background-color: hsl(286, 7%, 53%);
+    background-color: hsl(270, 3%, 87%);
 }
 
 .child:nth-child(3) h1 {
@@ -61,7 +104,7 @@
 }
 
 .child:nth-child(4) {
-    background-color: hsl(285, 4%, 56%);
+    background-color: hsl(270, 3%, 87%);
 }
 
 .child:nth-child(4) h1 {
