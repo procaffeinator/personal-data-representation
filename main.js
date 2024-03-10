@@ -26,7 +26,7 @@ var detoxLogos = [
 ];
 function loadPolarAreaChart() {
     var nonDetoxData = [407, 413, 428, 415, 466, 345, 385, 429, 473, 374];
-    var detoxData = [232, 211, 245, 180, 209, 215, 299, 254, 337, 195];
+    var detoxData = [232, 211, 245, 180, 209, 215, 299, 254, 337, 188];
 
     // Sample data for menstrual cycle phases (color coding)
     var menstrualPhases = {
@@ -39,7 +39,7 @@ function loadPolarAreaChart() {
     var menstrualNonDetox = ["Luteal", "Luteal", "Luteal", "Luteal", "Luteal", "Luteal", "Luteal", "Period", "Period", "Period"];
 
     // Labels for the days
-    var labels = ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10"];
+    var labels = ["Day 0", "Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9"];
 
     // Create the polar area chart
     var ctx = document.getElementById('polarChart').getContext('2d');
@@ -63,8 +63,19 @@ function loadPolarAreaChart() {
         },
         options: {
             scales: {
-                y: {
-                    beginAtZero: true
+                r: { // Change 'yAxis' to 'r'
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Screen Time (mins)' // Your y-axis label
+                    }
+                },
+                x: { // Change 'x' to 'xAxis'
+
+                    title: {
+                        display: true,
+                        text: 'Days' // Your x-axis label
+                    }
                 }
             },
             plugins: {
@@ -144,8 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
-
     function populateTableFromCSV() {
         fetch('data/dataset.csv')
             .then(response => response.text())
@@ -155,10 +164,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 table.classList.add('data-table');
 
                 data.trim().split('\n').forEach((row, index) => {
-                    const rowData = row.split(',');
+                    const rowData = row.split(';');
                     const tableRow = document.createElement('tr');
 
-                    rowData.forEach(cellData => {
+                    rowData.forEach((cellData, cellIndex) => {
                         const cell = index === 0 ? 'th' : 'td';
                         const cellElement = document.createElement(cell);
                         cellElement.textContent = cellData;
@@ -173,4 +182,5 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => console.log('Error fetching CSV file:', error));
     }
+
 });

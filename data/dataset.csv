@@ -1,21 +1,21 @@
-Date,ScreenTime,Phase of Menstrual Cycle,Phase of Detox Cycle,Top 3 Apps
-19/02/2024,407,Luteal,Non-Detox,"Instagram, WhatsApp, Spotify"
-20/02/2024,413,Luteal,Non-Detox,"Instagram, WhatsApp, Spotify"
-21/02/2024,428,Luteal,Non-Detox,"Instagram, WhatsApp, Outlook"
-22/02/2024,415,Luteal,Non-Detox,"Instagram, WhatsApp, Spotify"
-23/02/2024,466,Luteal,Non-Detox,"Instagram, WhatsApp, Spotify"
-24/02/2024,345,Luteal,Non-Detox,"Instagram, WhatsApp, LinkedIn"
-25/02/2024,385,Luteal,Non-Detox,"Instagram, WhatsApp, Spotify"
-26/02/2024,429,Period,Non-Detox,"Instagram, WhatsApp, LinkedIn"
-27/02/2024,473,Period,Non-Detox,"Instagram, WhatsApp, Spotify"
-28/02/2024,374,Period,Non-Detox,"Instagram, WhatsApp, LinkedIn"
-29/02/2024,232,Period,Detox,"WhatsApp, LinkedIn, Outlook"
-01/03/2024,211,Period,Detox,"WhatsApp, Microsoft Teams, Spotify"
-02/03/2024,245,Period,Detox,"WhatsApp, LinkedIn, Spotify"
-03/03/2024,180,Follicular,Detox,"WhatsApp, Outlook, LinkedIn"
-04/03/2024,209,Follicular,Detox,"WhatsApp, LinkedIn, Spotify"
-05/03/2024,215,Follicular,Detox,"WhatsApp, LinkedIn, Spotify"
-06/03/2024,299,Follicular,Detox,"WhatsApp, LinkedIn, Outlook"
-07/03/2024,254,Follicular,Detox,"WhatsApp, LinkedIn, Outlook"
-08/03/2024,337,Follicular,Detox,"Driver Start, WhatsApp, LinkedIn"
-09/03/2024,195,Follicular,Detox,"WhatsApp, LinkedIn, Outlook"
+Date;Day;Screen Time (in Minutes);Phase of Menstrual Cycle;Phase of Detox Cycle;Top 3 Apps
+19/02/2024;0;407;Luteal;Non-Detox;Instagram, WhatsApp, Spotify
+20/02/2024;1;413;Luteal;Non-Detox;Instagram, WhatsApp, Spotify
+21/02/2024;2;428;Luteal;Non-Detox;Instagram, WhatsApp, Outlook
+22/02/2024;3;415;Luteal;Non-Detox;Instagram, WhatsApp, Spotify
+23/02/2024;4;466;Luteal;Non-Detox;Instagram, WhatsApp, Spotify
+24/02/2024;5;345;Luteal;Non-Detox;Instagram, WhatsApp, LinkedIn
+25/02/2024;6;385;Luteal;Non-Detox;Instagram, WhatsApp, Spotify
+26/02/2024;7;429;Period;Non-Detox;Instagram, WhatsApp, LinkedIn
+27/02/2024;8;473;Period;Non-Detox;Instagram, WhatsApp, Spotify
+28/02/2024;9;374;Period;Non-Detox;Instagram, WhatsApp, LinkedIn
+29/02/2024;0;232;Period;Detox;WhatsApp, LinkedIn, Outlook
+01/03/2024;1;211;Period;Detox;WhatsApp, Microsoft Teams, Spotify
+02/03/2024;2;245;Period;Detox;WhatsApp, LinkedIn, Spotify
+03/03/2024;3;180;Follicular;Detox;WhatsApp, Outlook, LinkedIn
+04/03/2024;4;209;Follicular;Detox;WhatsApp, LinkedIn, Spotify
+05/03/2024;5;215;Follicular;Detox;WhatsApp, LinkedIn, Spotify
+06/03/2024;6;299;Follicular;Detox;WhatsApp, LinkedIn, Outlook
+07/03/2024;7;254;Follicular;Detox;WhatsApp, LinkedIn, Outlook
+08/03/2024;8;337;Follicular;Detox;Driver Start, WhatsApp, LinkedIn
+09/03/2024;9;188;Follicular;Detox;WhatsApp, LinkedIn, Outlook
