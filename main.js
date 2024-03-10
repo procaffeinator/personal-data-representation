@@ -1,179 +1,134 @@
-// utility functions
-if (!Util) function Util() { };
+loadPolarAreaChart();
 
-Util.addClass = function (el, className) {
-    var classList = className.split(' ');
-    el.classList.add(classList[0]);
-    if (classList.length > 1) Util.addClass(el, classList.slice(1).join(' '));
-};
+function loadPolarAreaChart() {
+    var detoxData = [407, 413, 428, 415, 466, 345, 385, 429, 473, 374];
+    var nonDetoxData = [232, 211, 245, 180, 209, 215, 299, 254, 337, 195];
 
-Util.removeClass = function (el, className) {
-    var classList = className.split(' ');
-    el.classList.remove(classList[0]);
-    if (classList.length > 1) Util.removeClass(el, classList.slice(1).join(' '));
-};
-
-Util.toggleClass = function (el, className, bool) {
-    if (bool) Util.addClass(el, className);
-    else Util.removeClass(el, className);
-};
-
-Util.setAttributes = function (el, attrs) {
-    for (var key in attrs) {
-        el.setAttribute(key, attrs[key]);
-    }
-};
-
-Util.hasClass = function (el, className) {
-    return el.classList.contains(className);
-};
-
-Util.getChildrenByClassName = function (el, className) {
-    var children = el.children,
-        childrenByClass = [];
-    for (var i = 0; i < children.length; i++) {
-        if (Util.hasClass(children[i], className)) childrenByClass.push(children[i]);
-    }
-    return childrenByClass;
-};
-
-Util.getIndexInArray = function (array, el) {
-    return Array.prototype.indexOf.call(array, el);
-};
-
-
-// File#: _1_tabs
-// Usage: codyhouse.co/license
-(function () {
-    var Tab = function (element) {
-        this.element = element;
-        this.tabList = this.element.getElementsByClassName('js-tabs__controls')[0];
-        this.listItems = this.tabList.getElementsByTagName('li');
-        this.triggers = this.tabList.getElementsByTagName('a');
-        this.panelsList = this.element.getElementsByClassName('js-tabs__panels')[0];
-        this.panels = Util.getChildrenByClassName(this.panelsList, 'js-tabs__panel');
-        this.hideClass = this.element.getAttribute('data-hide-panel-class') ? this.element.getAttribute('data-hide-panel-class') : 'th8-hide';
-        this.customShowClass = this.element.getAttribute('data-show-panel-class') ? this.element.getAttribute('data-show-panel-class') : false;
-        this.layout = this.element.getAttribute('data-tabs-layout') ? this.element.getAttribute('data-tabs-layout') : 'horizontal';
-        // deep linking options
-        this.deepLinkOn = this.element.getAttribute('data-deep-link') == 'on';
-        // init tabs
-        this.initTab();
+    // Sample data for menstrual cycle phases (color coding)
+    var menstrualPhases = {
+        "Luteal": "rgba(255, 165, 0, 0.6)",
+        "Period": "rgba(255, 0, 0, 0.6)",
+        "Follicular": "rgba(255, 255, 0, 0.6)",
+        "Ovulation": "rgba(255, 192, 203, 0.6)"
     };
+    var menstrualDetox = ["Period", "Period", "Period", "Follicular", "Follicular", "Follicular", "Follicular", "Follicular", "Follicular", "Follicular"];
+    var menstrualNonDetox = ["Luteal", "Luteal", "Luteal", "Luteal", "Luteal", "Luteal", "Luteal", "Period", "Period", "Period"];
 
-    Tab.prototype.initTab = function () {
-        //set initial aria attributes
-        this.tabList.setAttribute('role', 'tablist');
-        Util.addClass(this.element, 'tabs--no-interaction');
+    // Labels for the days
+    var labels = ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10"];
 
-        for (var i = 0; i < this.triggers.length; i++) {
-            var bool = (i == 0),
-                panelId = this.panels[i].getAttribute('id');
-            this.listItems[i].setAttribute('role', 'presentation');
-            Util.setAttributes(this.triggers[i], { 'role': 'tab', 'aria-selected': bool, 'aria-controls': panelId, 'id': 'tab-' + panelId });
-            Util.addClass(this.triggers[i], 'js-tabs__trigger');
-            Util.setAttributes(this.panels[i], { 'role': 'tabpanel', 'aria-labelledby': 'tab-' + panelId });
-            Util.toggleClass(this.panels[i], this.hideClass, !bool);
-            if (bool && this.customShowClass) Util.addClass(this.panels[i], this.customShowClass);
-
-            if (!bool) this.triggers[i].setAttribute('tabindex', '-1');
-        }
-
-        //listen for Tab events
-        this.initTabEvents();
-
-        // check deep linking option
-        this.initDeepLink();
-    };
-
-    Tab.prototype.initTabEvents = function () {
-        var self = this;
-        //click on a new tab -> select content
-        this.tabList.addEventListener('click', function (event) {
-            if (event.target.closest('.js-tabs__trigger')) self.triggerTab(event.target.closest('.js-tabs__trigger'), event);
-        });
-        //arrow keys to navigate through tabs 
-        this.tabList.addEventListener('keydown', function (event) {
-            ;
-            if (!event.target.closest('.js-tabs__trigger')) return;
-            if (tabNavigateNext(event, self.layout)) {
-                event.preventDefault();
-                self.selectNewTab('next');
-            } else if (tabNavigatePrev(event, self.layout)) {
-                event.preventDefault();
-                self.selectNewTab('prev');
+    // Create the polar area chart
+    var ctx = document.getElementById('polarChart').getContext('2d');
+    var polarChart = new Chart(ctx, {
+        type: 'polarArea',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Detox Period',
+                    data: detoxData,
+                    backgroundColor: menstrualDetox.map(phase => menstrualPhases[phase]),
+                },
+                {
+                    label: 'Non-Detox Period',
+                    data: nonDetoxData,
+                    backgroundColor: menstrualNonDetox.map(phase => menstrualPhases[phase]),
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: false
+                }
             }
+        }
+    });
+    // Generate custom legend
+    var legend = document.getElementById('customLegend');
+    var legendTitle = document.createElement('div');
+    legendTitle.classList.add('legend-title');
+    legendTitle.textContent = 'Menstrual Cycle Phases';
+    legendTitle.style.marginRight = '10px';
+    legend.appendChild(legendTitle);
+
+
+    Object.keys(menstrualPhases).forEach(function (phase) {
+        var item = document.createElement('div');
+        item.classList.add('legend-item');
+        item.style.backgroundColor = menstrualPhases[phase];
+        var phaseName = document.createElement('span');
+        phaseName.textContent = phase;
+        item.appendChild(phaseName);
+        legend.appendChild(item);
+    });
+
+}
+document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll('.tab-button');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            const tabId = this.getAttribute('data-tab');
+            activateTab(tabId);
         });
-    };
+    });
 
-    Tab.prototype.selectNewTab = function (direction) {
-        var selectedTab = this.tabList.querySelector('[aria-selected="true"]'),
-            index = Util.getIndexInArray(this.triggers, selectedTab);
-        index = (direction == 'next') ? index + 1 : index - 1;
-        //make sure index is in the correct interval 
-        //-> from last element go to first using the right arrow, from first element go to last using the left arrow
-        if (index < 0) index = this.listItems.length - 1;
-        if (index >= this.listItems.length) index = 0;
-        this.triggerTab(this.triggers[index]);
-        this.triggers[index].focus();
-    };
+    function activateTab(tabId) {
+        const allTabs = document.querySelectorAll('.tab-button');
+        const allTabContents = document.querySelectorAll('.tab-content');
 
-    Tab.prototype.triggerTab = function (tabTrigger, event) {
-        var self = this;
-        event && event.preventDefault();
-        var index = Util.getIndexInArray(this.triggers, tabTrigger);
-        //no need to do anything if tab was already selected
-        if (this.triggers[index].getAttribute('aria-selected') == 'true') return;
+        allTabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
+        allTabContents.forEach(content => {
+            content.classList.add('hidden');
+        });
 
-        Util.removeClass(this.element, 'tabs--no-interaction');
+        const selectedTab = document.querySelector(`[data-tab='${tabId}']`);
+        const selectedTabContent = document.getElementById(tabId);
 
-        for (var i = 0; i < this.triggers.length; i++) {
-            var bool = (i == index);
-            Util.toggleClass(this.panels[i], this.hideClass, !bool);
-            if (this.customShowClass) Util.toggleClass(this.panels[i], this.customShowClass, bool);
-            this.triggers[i].setAttribute('aria-selected', bool);
-            bool ? this.triggers[i].setAttribute('tabindex', '0') : this.triggers[i].setAttribute('tabindex', '-1');
-        }
-
-        // update url if deepLink is on
-        if (this.deepLinkOn) {
-            history.replaceState(null, '', '#' + tabTrigger.getAttribute('aria-controls'));
-        }
-    };
-
-    Tab.prototype.initDeepLink = function () {
-        if (!this.deepLinkOn) return;
-        var hash = window.location.hash.substr(1);
-        var self = this;
-        if (!hash || hash == '') return;
-        for (var i = 0; i < this.panels.length; i++) {
-            if (this.panels[i].getAttribute('id') == hash) {
-                this.triggerTab(this.triggers[i], false);
-                setTimeout(function () { self.panels[i].scrollIntoView(true); });
-                break;
-            }
-        };
-    };
-
-    function tabNavigateNext(event, layout) {
-        if (layout == 'horizontal' && (event.keyCode && event.keyCode == 39 || event.key && event.key == 'ArrowRight')) { return true; }
-        else if (layout == 'vertical' && (event.keyCode && event.keyCode == 40 || event.key && event.key == 'ArrowDown')) { return true; }
-        else { return false; }
-    };
-
-    function tabNavigatePrev(event, layout) {
-        if (layout == 'horizontal' && (event.keyCode && event.keyCode == 37 || event.key && event.key == 'ArrowLeft')) { return true; }
-        else if (layout == 'vertical' && (event.keyCode && event.keyCode == 38 || event.key && event.key == 'ArrowUp')) { return true; }
-        else { return false; }
-    };
-
-    window.Tab = Tab;
-
-    //initialize the Tab objects
-    var tabs = document.getElementsByClassName('js-tabs');
-    if (tabs.length > 0) {
-        for (var i = 0; i < tabs.length; i++) {
-            (function (i) { new Tab(tabs[i]); })(i);
+        selectedTab.classList.add('active');
+        selectedTabContent.classList.remove('hidden');
+        if (tabId === 'tab3') {
+            populateTableFromCSV();
         }
     }
-}());
+
+
+
+    function populateTableFromCSV() {
+        fetch('data/dataset.csv')
+            .then(response => response.text())
+            .then(data => {
+                const tableContainer = document.getElementById('data-table-container');
+                const table = document.createElement('table');
+                table.classList.add('data-table');
+
+                data.trim().split('\n').forEach((row, index) => {
+                    const rowData = row.split(',');
+                    const tableRow = document.createElement('tr');
+
+                    rowData.forEach(cellData => {
+                        const cell = index === 0 ? 'th' : 'td';
+                        const cellElement = document.createElement(cell);
+                        cellElement.textContent = cellData;
+                        tableRow.appendChild(cellElement);
+                    });
+
+                    table.appendChild(tableRow);
+                });
+
+                tableContainer.innerHTML = ''; // Clear existing content
+                tableContainer.appendChild(table);
+            })
+            .catch(error => console.log('Error fetching CSV file:', error));
+    }
+});
