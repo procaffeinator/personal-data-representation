@@ -1,8 +1,32 @@
 loadPolarAreaChart();
+var nonDetoxLogos = [
+    ['Instagram', 'WhatsApp', 'Spotify'],
+    ['Instagram', 'WhatsApp', 'Spotify'],
+    ['Instagram', 'WhatsApp', 'Outlook'],
+    ['Instagram', 'WhatsApp', 'Spotify'],
+    ['Instagram', 'WhatsApp', 'Spotify'],
+    ['Instagram', 'WhatsApp', 'LinkedIn'],
+    ['Instagram', 'WhatsApp', 'Spotify'],
+    ['Instagram', 'WhatsApp', 'LinkedIn'],
+    ['Instagram', 'WhatsApp', 'Spotify'],
+    ['Instagram', 'WhatsApp', 'LinkedIn'],
+];
 
+var detoxLogos = [
+    ['WhatsApp', 'LinkedIn', 'Outlook'],
+    ['WhatsApp', 'Microsoft Teams', 'Spotify'],
+    ['WhatsApp', 'LinkedIn', 'Spotify'],
+    ['WhatsApp', 'Outlook', 'LinkedIn'],
+    ['WhatsApp', 'LinkedIn', 'Spotify'],
+    ['WhatsApp', 'LinkedIn', 'Spotify'],
+    ['WhatsApp', 'LinkedIn', 'Outlook'],
+    ['WhatsApp', 'LinkedIn', 'Outlook'],
+    ['Driver Start', 'WhatsApp', 'LinkedIn'],
+    ['WhatsApp', 'LinkedIn', 'Outlook'],
+];
 function loadPolarAreaChart() {
-    var detoxData = [407, 413, 428, 415, 466, 345, 385, 429, 473, 374];
-    var nonDetoxData = [232, 211, 245, 180, 209, 215, 299, 254, 337, 195];
+    var nonDetoxData = [407, 413, 428, 415, 466, 345, 385, 429, 473, 374];
+    var detoxData = [232, 211, 245, 180, 209, 215, 299, 254, 337, 195];
 
     // Sample data for menstrual cycle phases (color coding)
     var menstrualPhases = {
@@ -19,21 +43,22 @@ function loadPolarAreaChart() {
 
     // Create the polar area chart
     var ctx = document.getElementById('polarChart').getContext('2d');
+
+    // Now, initialize the Chart object with the annotations included
     var polarChart = new Chart(ctx, {
         type: 'polarArea',
         data: {
             labels: labels,
-            datasets: [
-                {
-                    label: 'Detox Period',
-                    data: detoxData,
-                    backgroundColor: menstrualDetox.map(phase => menstrualPhases[phase]),
-                },
-                {
-                    label: 'Non-Detox Period',
-                    data: nonDetoxData,
-                    backgroundColor: menstrualNonDetox.map(phase => menstrualPhases[phase]),
-                }
+            datasets: [{
+                label: 'Detox Period',
+                data: detoxData,
+                backgroundColor: menstrualDetox.map(phase => menstrualPhases[phase]),
+            },
+            {
+                label: 'Non-Detox Period',
+                data: nonDetoxData,
+                backgroundColor: menstrualNonDetox.map(phase => menstrualPhases[phase]),
+            }
             ]
         },
         options: {
@@ -48,10 +73,27 @@ function loadPolarAreaChart() {
                 },
                 title: {
                     display: false
+                },
+                tooltip: {
+                    enabled: true,
+                    callbacks: {
+                        afterLabel: function (context) {
+                            var apps = '';
+                            const datasetIndex = context.datasetIndex;
+                            const dataIndex = context.dataIndex;
+                            const topApps = datasetIndex === 0 ? detoxLogos[dataIndex] : nonDetoxLogos[dataIndex];
+                            topApps.forEach(app => {
+                                apps += `${app}, `;
+                            });
+                            apps = apps.slice(0, -2); // Remove the last comma and space
+                            return 'Top 3 apps: ' + apps;
+                        }
+                    }
                 }
             }
         }
     });
+
     // Generate custom legend
     var legend = document.getElementById('customLegend');
     var legendTitle = document.createElement('div');
@@ -59,7 +101,6 @@ function loadPolarAreaChart() {
     legendTitle.textContent = 'Menstrual Cycle Phases';
     legendTitle.style.marginRight = '10px';
     legend.appendChild(legendTitle);
-
 
     Object.keys(menstrualPhases).forEach(function (phase) {
         var item = document.createElement('div');
@@ -70,8 +111,9 @@ function loadPolarAreaChart() {
         item.appendChild(phaseName);
         legend.appendChild(item);
     });
-
 }
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const tabs = document.querySelectorAll('.tab-button');
     tabs.forEach(tab => {
