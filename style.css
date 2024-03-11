@@ -136,3 +136,9 @@ figcaption {
     font-size: 15px;
     /* Adjust the font size as per your design */
 }
+
+.chart-footer {
+    font-size: 12px;
+    text-align: right;
+    font-style: italic;
+}
