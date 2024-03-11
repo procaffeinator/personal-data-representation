@@ -8,6 +8,8 @@ body {
 .container {
     text-align: center;
     margin-top: 50px;
+    /* display: flex;
+    flex-wrap: wrap; */
 }
 
 .heading {
@@ -107,4 +109,30 @@ th {
 
 .legend-item span {
     margin-left: 5px;
+}
+
+.chart-image {
+    max-width: 70%;
+    /* Ensure the image does not exceed the container width */
+    height: auto;
+    /* Maintain aspect ratio */
+    display: block;
+    /* Ensure proper alignment */
+    margin: 0 auto;
+    /* Center the image horizontally */
+    border: 2px solid #333;
+    /* Add a border for visual clarity */
+    box-sizing: border-box;
+    /* Include border in the width calculation */
+}
+
+figcaption {
+    text-align: center;
+    font-style: italic;
+    margin-top: 5px;
+    /* Adjust as needed */
+    color: #000000;
+    /* Adjust the color as per your design */
+    font-size: 15px;
+    /* Adjust the font size as per your design */
 }

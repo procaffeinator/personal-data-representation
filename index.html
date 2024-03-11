@@ -12,13 +12,12 @@
 
 <body>
     <div class="container">
-        <h1 class="heading">Revitalize: A 10-Day Digital Detox Journey</h1> <!-- Your heading -->
+        <h1 class="heading">A 10-Day Digital Detox Journey</h1> <!-- Your heading -->
         <div class="tabs">
             <div class="tab-header">
                 <button class="tab-button active" data-tab="tab1">Final Design</button>
                 <button class="tab-button" data-tab="tab2">Design Process</button>
-                <button class="tab-button" data-tab="tab3">Data Collection</button>
-                <button class="tab-button" data-tab="tab4">Design Iteration</button>
+
             </div>
             <div class="tab-content" id="tab1">
                 <div class="chart-container">
@@ -28,10 +27,19 @@
                 </div>
             </div>
             <div class="tab-content hidden" id="tab2">
-                <p>This is the content for Tab 2.</p>
-            </div>
-            <div class="tab-content hidden" id="tab3">
-
+                <h3>Initial Concept</h3>
+                <p>I began by consolidating data from the last two months, specifically Jan-Feb 2024, to understand how
+                    my
+                    sleep hours and screen time vary according to the phase of my menstrual cycle. Through this
+                    exploration,
+                    I aimed to find correlations between these variables and gain insights into my digital habits and
+                    overall well-being.</p>
+                <figure>
+                    <img src="assets/stacked_bar_chart.jpg" class="chart-image" alt="Stacked Bar Chart">
+                    <figcaption>Fig. 1: Stacked Bar Chart - Visualizing variations in screen time and sleep hours.
+                    </figcaption>
+                </figure>
+                <h3>Data Collection</h3>
                 <p>For my data collection process, I utilized various sources to gather information on:</p>
                 <p><strong>{Date, Day, Screen Time, Phase of Menstrual Cycle, Phase of Detox Cycle, Top 3 Apps}</strong>
                 </p>
@@ -49,10 +57,82 @@
                 </p>
                 <p>Here is a summary of the compiled dataset for reference:</p>
                 <div class="table-container" id="data-table-container"></div>
-            </div>
+                <h3>Data Feminism</h3>
+                <p>As I delved deeper into my data analysis, I recognized the importance of tracing back to the context
+                    surrounding the data. Incorporating menstrual cycle data into my analysis fostered a more inclusive
+                    understanding of menstrual health and its impact on my digital usage. This approach, rooted in data
+                    feminism [3], helped me comprehend and visualize the intricate relationship between my menstrual
+                    cycle
+                    and
+                    digital habits.</p>
 
-            <div class="tab-content hidden" id="tab4">
-                <p>This is the content for Tab 4.</p>
+                <h3>Design Transition (Design Iterations)</h3>
+                <p> I noticed through my initial data analysis that I spend a lot of time mindlessly scrolling through
+                    Instagram.
+                    I decided to do a detox experiment to compare screen time across a 20-day window,
+                    divided
+                    into 10 days of non-detox and 10 days of detox, where I uninstalled Instagram. This detox
+                    aimed to regulate my digital usage and monitor my digital footprint more effectively. During this
+                    period, I noticed a shift in my app usage, particularly towards productivity apps like LinkedIn and
+                    Outlook, reflecting my job search activities. Despite the detox, I maintained regular usage of
+                    WhatsApp,
+                    my primary mode of communication with family in India, but with regulated usage.</p>
+
+                <h3>Refining the Design</h3>
+                <figure>
+                    <img src="assets/bubble_chart.jpg" class="chart-image" alt="Bubble Chart">
+                    <figcaption>Figure 2: Bubble Chart illustrating the correlation between sleep hours and screen time
+                        during the detox experiment.
+                    </figcaption>
+                </figure>
+
+                <p>In refining my design process, I opted for simplicity and clarity. I used a bubble chart to
+                    visualize the correlation between sleep hours and screen time. On further thought, I deciding to
+                    omit sleep
+                    hours
+                    due as they were mostly constant and not affected by any of the factors under consideration. I
+                    ditched the bubble chart and continued to explore other ways of visualizing this data.
+                </p>
+                <figure>
+                    <img src="assets/polar_area_chart.jpg" class="chart-image" alt="Polar Area Chart">
+                    <figcaption>Figure 3: Polar Area Chart showcasing the day-by-day comparison of screen time across
+                        different menstrual phases during the detox experiment.</figcaption>
+                </figure>
+
+                <p>I tried out visualizing this data using a Stacked Bar Chart, Line Chart, Steamgraph etc to find the
+                    best fit for my dataset.
+                    For the final design, I chose a polar area chart as it offered a comprehensive day-by-day comparison
+                    of
+                    screen time, with the area size representing usage intensity. This <strong>unconventional
+                        format</strong> facilitated
+                    a
+                    nuanced understanding of my digital habits across different menstrual phases. By color-coding the
+                    phases
+                    of the menstrual cycle, I could visually observe variations in my usage patterns. I chose warm
+                    colors like red, orange, and yellow to represent menstrual phases. This <strong>departure from
+                        traditional
+                        color associations</strong> fosters a more inclusive narrative around menstrual health,
+                    encouraging open
+                    dialogue and understanding. This is useful as
+                    I have borderline PMS and it helps me uncover relationships between my menstrual cycle and digital
+                    footprint. I also decided to add an option to view the top 3 apps allowed me to
+                    regulate
+                    my app usage and track my digital activities more efficiently.</p>
+                <h3>Design Medium</h3>
+                <p>Incorporating chart.js as my design medium, I leveraged its flexibility and functionality to plot and
+                    visualize my data effectively. This medium allowed me to explore unconventional representations of
+                    my
+                    data and challenge traditional visualization practices, aligning with the principles of data
+                    feminism
+                    and inclusive data analysis.</p>
+
+                <h3>References</h3>
+                <ul>
+                    <li><a href="https://chat.openai.com/">https://chat.openai.com/</a></li>
+                    <li><a href="">https://codyhouse.co/nuggets/</a>https://codyhouse.co/nuggets/</li>
+                    <li>D'Ignazio, Catherine, and Lauren Klein. "Introduction: Why data science needs feminism." Data
+                        Feminism (2020).</li>
+                </ul>
             </div>
         </div>
     </div>

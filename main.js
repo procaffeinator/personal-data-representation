@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         selectedTab.classList.add('active');
         selectedTabContent.classList.remove('hidden');
-        if (tabId === 'tab3') {
+        if (tabId === 'tab2') {
             populateTableFromCSV();
         }
     }
